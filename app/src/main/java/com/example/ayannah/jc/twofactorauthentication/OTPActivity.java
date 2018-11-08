@@ -1,29 +1,24 @@
 package com.example.ayannah.jc.twofactorauthentication;
 
-import android.app.Dialog;
-import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 
-public class CustomDialog extends Dialog implements TextWatcher {
+public class OTPActivity extends AppCompatActivity implements TextWatcher {
     public EditText editText_one;
     public EditText editText_two;
     public EditText editText_three;
     public EditText editText_four;
     public String generateCode;
 
-    public CustomDialog(Context context,String code) {
-        super(context);
-    }
-    
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.custom_dialog);
+        setContentView(R.layout.activity_otp);
+        SecurityCode code = getIntent().getExtras().getParcelable("CODEX");
         editText_one = findViewById(R.id.editTextone);
         editText_two = findViewById(R.id.editTexttwo);
         editText_three = findViewById(R.id.editTextthree);
@@ -34,7 +29,7 @@ public class CustomDialog extends Dialog implements TextWatcher {
         editText_three.addTextChangedListener(this);
         editText_four.addTextChangedListener(this);
 
-        Log.i("DIALOG CODE",generateCode);
+        Log.i("Security Code SECOND:", code.getCode());
     }
 
     @Override
